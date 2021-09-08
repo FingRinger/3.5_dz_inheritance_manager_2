@@ -42,8 +42,10 @@ public class Book extends Product {
                 '}';
     }
     @Override
-    public boolean matches(String search) {
-        if (super.matches(search)) {
+    public boolean matches(Book book, String search) {
+        if (product instanceof Book) { // если в параметре product лежит объект класса Book
+            Book book = (Book) product;
+        if (super.matches(product, search)) {
             return true;
         }
             if (getAuthor().contains(search)) { // проверим есть ли поисковое слово в данных об авторе
