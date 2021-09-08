@@ -48,7 +48,7 @@ public class Smartphone extends Product {
             if (super.matches(search)) {
                 return true;
             }
-            if (getManufacturer().contains(search)) { // проверим есть ли поисковое слово в данных об авторе
+            if (getManufacturer().contains(search)) {
                 return true;
             }
             return false;

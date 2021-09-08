@@ -28,7 +28,6 @@ class ProductManagerTest {
 
     @Test // позитивный сценарий/поиск книги по названию
     public void findBookWithName() {
-        manager.matches(firstBook, "Good Omens");
 
         Product[] expected = new Product[]{firstBook};
         Product[] actual = manager.searchBy("Good Omens");
@@ -38,7 +37,6 @@ class ProductManagerTest {
 
     @Test // позитивный сценарий/поиск книги по автору
     public void findBookWithAuthor() {
-        manager.matches(secondBook, "Pratchett Terry");
 
         Product[] expected = new Product[]{firstBook};
         Product[] actual = manager.searchBy("Pratchett Terry");
@@ -80,7 +78,7 @@ class ProductManagerTest {
         assertArrayEquals(expected, actual);
     }
     @Test
-    public void thereIsNoSmartphoneWhithSuchNameInRepo() {
+    public void thereIsNoSmartphoneWithSuchNameInRepo() {
         Product[] expected = new Product[0];
         Product[] actual = manager.searchBy("Samsung");
 
@@ -88,10 +86,65 @@ class ProductManagerTest {
     }
 
     @Test
-    public void thereIsNoSmartphoneWhithSuchManufacturerInRepo() {
+    public void thereIsNoSmartphoneWithSuchManufacturerInRepo() {
         Product[] expected = new Product[0];
         Product[] actual = manager.searchBy("Huawei");
 
         assertArrayEquals(expected, actual);
+    }
+
+    //unit-тесты на методы ваших умных моделей
+    @Test
+    public void shouldBeTrueBook() {
+
+        boolean expected = true;
+        boolean actual = secondBook.matches("Java");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotBeTrueName() {
+
+        boolean expected = false;
+        boolean actual = secondBook.matches("LadyBird");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldBeTrueAuthor(){
+
+        boolean expected = true;
+        boolean actual = firstBook.matches("Pratchett Terry");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotBeTrueAuthor(){
+
+        boolean expected = false;
+        boolean actual = firstBook.matches("Luis Terry");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotBeTrueSmartphone(){
+
+        boolean expected = false;
+        boolean actual = firstSmartphone.matches("HTC vive pro 2");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotTrueSmartphone(){
+
+        boolean expected = true;
+        boolean actual = firstSmartphone.matches("HTC");
+
+        assertEquals(expected, actual);
     }
 }

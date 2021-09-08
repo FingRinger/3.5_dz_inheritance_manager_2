@@ -17,7 +17,6 @@ public class Product {
     }
 
 
-
     public int getId() {
         return id;
     }
@@ -49,6 +48,7 @@ public class Product {
         Product product = (Product) o;
         return id == product.id && price == product.price && Objects.equals(name, product.name);
     }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -57,15 +57,17 @@ public class Product {
                 ", price=" + price +
                 '}';
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id, name, price);
     }
 
-    public boolean matches(Product product, String search) {
-        if (product.getName().contains(search)) {
+    public boolean matches(String search) {
+        if (getName().contains(search)) {
             return true;
         } else {
             return false;
         }
+    }
 }
